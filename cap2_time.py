@@ -32,13 +32,16 @@ n_b_multi.fit(X,y)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y)
 
+
+
 title_nb_m_train_s = []
 title_nb_m_test_s = []
 
-X_train, X_test, y_train, y_test = train_test_split(X, y)
-n_b_multi.fit(X,y)
-title_nb_m_train_s = n_b_multi.score(X_train, y_train)
-title_nb_m_test_s = n_b_multi.score(X_test, y_test)
+for _ in range(1000):
+    X_train, X_test, y_train, y_test = train_test_split(X, y)
+    n_b_multi.fit(X,y)
+    title_nb_m_train_s.append(n_b_multi.score(X_train, y_train))
+    title_nb_m_test_s.append(n_b_multi.score(X_test, y_test))
 
-print(title_nb_m_train_s)
-print(title_nb_m_test_s)
+print(sum(title_nb_m_train_s)/(1000))
+print(sum(title_nb_m_test_s)/1000)
